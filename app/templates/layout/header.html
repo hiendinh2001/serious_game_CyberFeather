@@ -1,0 +1,58 @@
+<!-- header section start -->
+<div class="header_section">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="logo"><a href="{{ url_for('index') }}"><img
+                    src="{{ url_for('static', filename='images/logo oie.png') }}"></a></div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <!-- Page Accueil -->
+                <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                    <a class="nav-link" href="/">ACCUEIL</a>
+                </li>
+                {% if not current_user.is_authenticated %}
+                <li class="nav-item {% if request.path == '/jouer' %}active{% endif %}">
+                    <a class="nav-link" href="/jouer">JOUER</a>
+                </li>
+                {% endif %}
+                <li class="nav-item {% if request.path == '/contact' %}active{% endif %}">
+                    <a class="nav-link" href="/contact">CONTACT</a>
+                </li>
+                <!-- Après la connexion -->
+                {% if current_user.is_authenticated %}
+                <!-- Avatar + Nom Prénom -->
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="{{ url_for('info_perso') }}">
+                        {% if current_user.avatar %}
+                        <img src="{{ current_user.avatar }}" class="rounded-circle" width="20"
+                            alt="{{ current_user.name }}" />
+                        {% else %}
+                        <img src="{{ url_for('static', filename='images/avatar.png') }}" class="rounded-circle"
+                            width="20" alt="{{ current_user.name }}" />
+                        {% endif %}
+                        {{ current_user.name }}
+                    </a>
+                </li>
+                <!-- Bouton Déconnexion -->
+                <li class="nav-item mr-3">
+                    <a class="nav-link" href="{{ url_for('user_signout') }}">DÉCONNEXION</a>
+                </li>
+                <!-- Avant la connexion -->
+                {% else %}
+                <!-- Page Connexion -->
+                <li class="nav-item {% if request.path == url_for('user_signin') %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('user_signin') }}">CONNEXION</a>
+                </li>
+                <li class="nav-item {% if request.path == url_for('user_register') %}active{% endif %}">
+                    <a class="nav-link" href="{{ url_for('user_register') }}">INSCRIPTION</a>
+                </li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </nav>
+</div>
+<!-- header section end -->

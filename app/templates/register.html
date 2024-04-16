@@ -1,0 +1,61 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Inscription {% endblock %}
+
+{% block content %}
+
+<div class="contact_section layout_padding padding_top_0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="email_box">
+          <div class="input_main">
+            <div class="container">
+              {% if err_msg %}
+              <div class="alter alter-danger text-center">
+                <h6 class="text-danger">{{ err_msg }}</h6>
+              </div>
+              {% endif %}
+              <form class="form-signin" method="post" action="{{ url_for('user_register') }}"
+                enctype="multipart/form-data">
+                <!--<input type="hidden" name="contact_number">-->
+                <div class="form-group mb-4">
+                  <label for="name">Nom et prénom <span style="color: red;">*</span></label>
+                  <input type="text" id="name" name="name" class="email-bt" placeholder="" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="email">Email <span style="color: red;">*</span></label>
+                  <input type="email" id="email" name="email" class="email-bt" placeholder="" autofocus required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="username">Identifiant <span style="color: red;">*</span></label>
+                  <input type="text" id="username" name="username" class="email-bt" placeholder="" minlength="10"
+                    maxlength="50" required autofocus>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="password">Mot de passe<span style="color: red;">*</span></label>
+                  <input type="password" id="password" name="password" class="email-bt" placeholder="" minlength="10"
+                    maxlength="50" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="confirm">Confirmation du mot de passe<span style="color: red;">*</span></label>
+                  <input type="password" id="confirm" name="confirm" class="email-bt" placeholder="" minlength="10"
+                    maxlength="50" required>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="avatar">Avatar <span style="color: red;">*</span></label>
+                  <input type="file" id="avatar" name="avatar" class="email-bt" placeholder="" required>
+                </div>
+                <button class="main_bt" type="submit" style="width: 200px;">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="image_6"><img src="{{ url_for('static', filename='images/img-6.png') }}"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
