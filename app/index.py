@@ -19,7 +19,7 @@ def jouer():
 
 @app.route("/jouer2")
 def jouer2():
-    return render_template('jouer2.html')
+    return render_template('jouer_2.html')
 
 @app.route("/contact")
 def contact():
