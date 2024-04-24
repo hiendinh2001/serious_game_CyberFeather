@@ -17,6 +17,10 @@ def index():
 def jouer():
     return render_template('jouer.html')
 
+@app.route("/jouer2")
+def jouer2():
+    return render_template('jouer2.html')
+
 @app.route("/contact")
 def contact():
     return render_template('contact.html')
