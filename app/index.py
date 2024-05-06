@@ -4,6 +4,7 @@ from app import utils
 import cloudinary.uploader
 from flask_login import login_user, logout_user, current_user
 from flask_login import login_required
+import subprocess
 import os
 from datetime import date, datetime, timedelta
 import random
@@ -19,7 +20,7 @@ def jouer():
 
 @app.route("/jouer2")
 def jouer2():
-    return render_template('jouer_2.html')
+    return render_template('indexjeu.html')
 
 @app.route("/contact")
 def contact():
@@ -82,6 +83,7 @@ def user_signin():
 def user_signout():
     logout_user()
     return redirect(url_for('user_signin'))
+
 
 
 @login.user_loader

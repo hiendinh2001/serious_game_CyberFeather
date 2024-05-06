@@ -1,0 +1,103 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Jouer {% endblock %}
+{% block js %} <script src="{{ url_for('static', filename='js/jeu.js') }}"></script> {% endblock %}
+
+{% block content %}
+<script src="{{ url_for('static', filename='js/jeu.js') }}"></script>
+<script>
+	var playerPosition = 0;
+
+        // Fonction pour avancer le joueur
+        function movePlayer() {
+            // Incrémenter la position du joueur
+            playerPosition++;
+
+            // Mettre à jour l'affichage de la position du joueur
+            document.getElementById("playerPosition").innerText = "Position du joueur : " + playerPosition;
+        }
+</script>
+<TABLE BORDER="1" mt-5>
+  <tr>
+	<div id="case0">
+		<td class= "td2" id="0" >  départ </td>
+	</div>
+<div id="case1">  	<td class= "td2"id="1" > 1 </td> </div>
+<div id="case2">  	<td class= "td2"id="2" > 2 </td> </div>
+	<div id="case3"> <td class= "td2"id="3" >3 </td> </div>
+<div id="case4">  	<td class= "td2"id="4" > 4 </td> </div>
+	<div id="case5"> <td class= "td2"id="5" > 5 </td> </div>
+
+  </tr>
+	<tr>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+		<div id="case00"> 	<td class= "td2"id="6" > 6 </td> </div>
+ </tr>
+  <tr>
+<div id="case20">  	<td class= "td2"id="20" > 20 </td> </div>
+<div id="case21"> 	<td class= "td2"id="21" > 21 </td> </div>
+<div id="cas22"> 	<td class= "td2"id="22" > 22 </td> </div>
+<div id="case23">  	<td class= "td2"id="23" > 23 </td></div>
+	<td class="td1">   </td>
+<div id="case7">	<td class= "td2"id="7" > 7  </td> </div>
+ </tr>
+	<tr>
+<div id="case19">  	<td class= "td2"id="19" > 19 </td> </div>
+ 	<td class="td1">   </td>
+	<td class="td1">   </td>
+<div id="case24">  	<td class= "td2"id="24" > 24 </td> </div>
+	<td class="td1">   </td>
+<div id="case8">	<td class= "td2"id="8" >  8  </td> </div>
+
+  </tr>
+  <tr>
+<div id="case18"> 	<td class= "td2"id="18" > 18      </td> </div>
+	<td class="td1">    </td>
+	 <td class= "td2"id="26" > Arrivée </td>
+<div id="case25">  	<td class= "td2"id="25" > 25      </td></div>
+	<td class="td1">   </td>
+<div id="case9">  	<td class= "td2"id="9" > 9       </td></div>
+  </tr>
+  <tr>
+<div id="case17">  	<td class= "td2" id="17" > 17 </td> </div>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+	<td class="td1">   </td>
+<div id="case10">  	<td class= "td2"id="10" > 10 </td> </div>
+
+  </tr>
+   <tr>
+<div id="case16">  	<td class= "td2"id="16" > 16 </td> </div>
+<div id="case15">  	<td class= "td2"id="15" > 15 </td> </div>
+	<div id="case14">  <td class= "td2"id="14" > 14 </td> </div>
+<div id="case13">  	<td class= "td2"id="13" > 13 </td></div>
+<div id="case12">  	<td class= "td2"id="12" > 12 </td></div>
+<div id="case11"> 	<td class= "td2"id="11" > 11  </td> </div>
+
+
+</TABLE>
+<p id="playerPosition">Position du joueur : 0</p>
+<div class="p-3 mb-2 bg-warning text-dark">
+	<button>Facile</button>
+</div>
+<div class="p-3 mb-2 bg-danger text-dark">
+	<button>Moyen</button>
+</div>
+<div class="p-3 mb-2 bg-success text-dark justify-content-center" >
+	<button>Difficile</button>
+</div>
+
+<a href="règle du jeu.html" target="_blank">Les règles </a>
+<div id="de1"> </div>
+<div id="case"> </div>
+<div id="valeur_question"> </div>
+<div id="question"> </div>
+<div id="reponse"> </div>
+<input name="bouton2" type="button" value="de1" onClick="de1()">
+
+{% endblock %}
