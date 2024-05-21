@@ -22,6 +22,17 @@ def jouer():
 def jouer2():
     return render_template('indexjeu.html')
 
+@app.route("/Facile")
+def Facile():
+    return render_template('QCMfacile.html')
+
+@app.route("/Moyen")
+def Moyen():
+    return render_template('QCMmoyen.html')
+
+@app.route("/Difficile")
+def Difficile():
+    return render_template('QCMdifficile.html')
 @app.route("/contact")
 def contact():
     return render_template('contact.html')

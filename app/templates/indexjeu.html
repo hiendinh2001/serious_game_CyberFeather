@@ -5,18 +5,7 @@
 
 {% block content %}
 <script src="{{ url_for('static', filename='js/jeu.js') }}"></script>
-<script>
-	var playerPosition = 0;
 
-        // Fonction pour avancer le joueur
-        function movePlayer() {
-            // Incrémenter la position du joueur
-            playerPosition++;
-
-            // Mettre à jour l'affichage de la position du joueur
-            document.getElementById("playerPosition").innerText = "Position du joueur : " + playerPosition;
-        }
-</script>
 <TABLE BORDER="1" mt-5>
   <tr>
 	<div id="case0">
@@ -83,15 +72,71 @@
 </TABLE>
 <p id="playerPosition">Position du joueur : 0</p>
 <div class="p-3 mb-2 bg-warning text-dark">
-	<button>Facile</button>
+	<a href="/Facile">Facile</a>
 </div>
 <div class="p-3 mb-2 bg-danger text-dark">
-	<button>Moyen</button>
+	<a href="/Moyen">Moyen</a>
 </div>
 <div class="p-3 mb-2 bg-success text-dark justify-content-center" >
-	<button>Difficile</button>
+	<a href="/Difficile">Difficile</a>
 </div>
+<script>
+        let playerPosition = 1;
 
+        document.getElementById('easy-button').addEventListener('click', function() {
+            openMiniGame('easy');
+        });
+
+        document.getElementById('medium-button').addEventListener('click', function() {
+            openMiniGame('medium');
+        });
+
+        document.getElementById('hard-button').addEventListener('click', function() {
+            openMiniGame('hard');
+        });
+
+        function openMiniGame(difficulty) {
+        	if (difficulty === 'easy'){
+
+				const url = `QCMfacile.html`;
+				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
+				miniGameWindow.onbeforeunload = function() {
+					const result = miniGameWindow.result;
+					if (result === 'win') {
+						updatePlayerPosition();
+					}
+				}
+			if (difficulty === 'medium'){
+
+				const url = `QCMmoyen.html`;
+				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
+				miniGameWindow.onbeforeunload = function() {
+					const result = miniGameWindow.result;
+					if (result === 'win') {
+						updatePlayerPosition();
+						updatePlayerPosition();
+					}
+				}
+			if (difficulty === 'hard'){
+
+				const url = `QCMdifficile.html`;
+				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
+				miniGameWindow.onbeforeunload = function() {
+					const result = miniGameWindow.result;
+					if (result === 'win') {
+						updatePlayerPosition();
+						updatePlayerPosition();
+						updatePlayerPosition();
+					}
+				}
+            };
+        }
+
+        function updatePlayerPosition() {
+            playerPosition++;
+            document.getElementById('position').innerText = playerPosition;
+        }
+</script>
 <a href="règle du jeu.html" target="_blank">Les règles </a>
 <div id="de1"> </div>
 <div id="case"> </div>

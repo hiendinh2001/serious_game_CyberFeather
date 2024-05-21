@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-Jeu QCM</title>
+    <style>
+        /* Ajoutez votre style CSS ici */
+    </style>
+</head>
+<body>
+    <h1>Mini-Jeu QCM</h1>
+    <div id="game-area">
+        <p id="question"></p>
+        <div id="answers">
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+            <button class="answer-button"></button>
+        </div>
+        <p id="result"></p>
+    </div>
+    <script>
+        const questions = [
+            {
+                question: "Quel est le protocole de sécurité utilisé pour les sites web sécurisés ?",
+                correctAnswer: "HTTPS",
+                incorrectAnswers: ["HTTP", "FTP", "SMTP"]
+            },
+            {
+                question: "Quel est l'objectif principal du pare-feu ?",
+                correctAnswer: "Protéger le réseau des intrusions",
+                incorrectAnswers: ["Accélérer l'Internet", "Rendre les sites web plus beaux", "Stocker des fichiers"]
+            },
+            {
+                question: "Quelle est la méthode recommandée pour créer un mot de passe sécurisé ?",
+                correctAnswer: "Utiliser une combinaison de lettres, chiffres et symboles",
+                incorrectAnswers: ["Utiliser uniquement des chiffres", "Utiliser le nom de votre animal", "Utiliser votre date de naissance"]
+            }
+            // Ajoutez plus de questions ici
+        ];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function getRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            const question = questions[randomIndex];
+            const answers = shuffle([question.correctAnswer, ...question.incorrectAnswers]);
+            return { question: question.question, answers, correctAnswer: question.correctAnswer };
+        }
+
+        function displayQuestion() {
+            const { question, answers, correctAnswer } = getRandomQuestion();
+            document.getElementById('question').innerText = question;
+
+            const answerButtons = document.querySelectorAll('.answer-button');
+            answerButtons.forEach((button, index) => {
+                button.innerText = answers[index];
+                button.onclick = () => checkAnswer(button.innerText, correctAnswer);
+            });
+        }
+
+        function checkAnswer(selectedAnswer, correctAnswer) {
+            const resultElement = document.getElementById('result');
+            if (selectedAnswer === correctAnswer) {
+                resultElement.innerText = "Correct!";
+                window.result = 'win';
+            } else {
+                resultElement.innerText = "Incorrect!";
+                window.result = 'lose';
+            }
+            setTimeout(() => {
+                window.close();
+            }, 1000);
+        }
+
+        displayQuestion();
+    </script>
+</body>
+</html>
