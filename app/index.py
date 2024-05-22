@@ -1,18 +1,26 @@
-from flask import render_template, request, redirect, url_for, session, jsonify, send_file, Response
+from flask import render_template, request, redirect, url_for, session, jsonify, send_file, Response, flash
 from app import app, login
 from app import utils
 import cloudinary.uploader
 from flask_login import login_user, logout_user, current_user
 from flask_login import login_required
+from app.models import User, Question,  CHIFFREMENT_CESARQuestion, GameType
 import subprocess
 import os
 from datetime import date, datetime, timedelta
 import random
 from string import ascii_uppercase
+from app import app, db
+from random import choice
+import random
+from sqlalchemy import desc
+
+
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    top_scores = User.query.order_by(desc(User.score)).limit(10).all()
+    return render_template('index.html', top_scores=top_scores)
 
 @app.route("/jouer")
 def jouer():
@@ -104,9 +112,52 @@ def user_load(user_id):
 def info_perso():
     return render_template('info_perso.html', users=utils.load_user())
 
-@app.route('/questions/<level>/<option>')
-def questions(level, option):
-    return render_template('questions.html', level=level, option=option)
+
+@app.route('/questions/<level>/<option>/<game>')
+@login_required
+def get_random_question(level, option, game):
+    # Filtrer les questions par niveau, option et jeu
+    questions = Question.query.filter_by(level=level, option=option, game=game).all()
+
+    # Vérifier si des questions ont été trouvées
+    if questions:
+        # Sélectionner une question aléatoire parmi les questions filtrées
+        random_question = choice(questions)
+        print(game)
+
+        return render_template('questions.html', questions=questions, question=random_question, GameType=GameType, game=game)
+    else:
+        # Gérer le cas où aucune question n'a été trouvée
+        flash("Aucune question disponible pour ce niveau, cette option et ce jeu.", "error")
+        return redirect(url_for('jouer2'))
+
+
+
+@app.route('/submit_answer', methods=['POST'])
+@login_required
+def submit_answer():
+    question_id = request.form.get('question_id')
+    user_answer = request.form.get('answer')
+    question = Question.query.get(question_id)
+    
+    if question:
+        correct = user_answer == question.correct_answer
+        if correct:
+            if question.level == 'Facile':
+                score_increase = 1
+            elif question.level == 'Moyen':
+                score_increase = 2
+            elif question.level == 'Difficile':
+                score_increase = 3
+        else:
+            score_increase = 0
+
+        current_user.score += score_increase
+        db.session.commit()
+
+    return redirect(url_for('jouer2'))
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True, host="0.0.0.0")

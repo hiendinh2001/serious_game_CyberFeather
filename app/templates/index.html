@@ -43,13 +43,13 @@
           <div class="row">
 
             <div class="col-md-6">
-
               <h1 class="video_text">Tableau des résultats</h1>
-
-              <p class="banner_text">Ligne <br>Ligne <br>Ligne <br>Ligne <br>Ligne <br>Ligne <br>Ligne <br>Ligne <br>
-              </p>
-
-            </div>
+              <ul class="banner_text">
+                  {% for user in top_scores %}
+                      <li>{{ user.name }} - {{ user.score }}</li>
+                  {% endfor %}
+              </ul>
+          </div>
 
             <div class="col-md-6">
 
@@ -96,7 +96,7 @@
 </div>
 <!-- about section end -->
 <!-- product section start -->
-<div class="product_section layout_padding">
+<!-- <div class="product_section layout_padding">
   <div class="container">
     <div class="product_text">Our <span style="color: #5ca0e9;">products</span></div>
     <p class="long_text">It is a long established fact that a reader will be distracted by the readable content of a
@@ -123,10 +123,10 @@
       <div class="see_bt"><a href="#">See More</a></div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- product section end -->
 <!-- testimonial section start -->
-<div class="testimonial_section layout_padding">
+<!-- <div class="testimonial_section layout_padding">
   <div class="container">
     <h1 class="testimonial_text">Testimonial</h1>
     <p class="ipsum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -152,6 +152,6 @@
       <div class="see_bt"><a href="#">See More</a></div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- testimonial section end -->
 {% endblock %}

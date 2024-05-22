@@ -4,34 +4,51 @@
 
 {% block content %}
 <div class="container mt-5">
-        <h1>Questions - Niveau {{ level }} - Option {{ option }}</h1>
-        <div id="questions-container">
-            <!-- Les questions seront affichées ici -->
-            <p>Cette section affichera les questions pour le niveau <strong>{{ level }}</strong> et l'option <strong>{{ option }}</strong>.</p>
-            <!-- Exemple de question -->
-            <div class="question">
-                <h3>Question 1</h3>
-                <p>Quelle est la commande pour lister les fichiers dans un répertoire sous Linux ?</p>
-                <!-- Options de réponse -->
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question1" id="option1" value="option1">
-                    <label class="form-check-label" for="option1">
-                        ls
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question1" id="option2" value="option2">
-                    <label class="form-check-label" for="option2">
-                        list
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="question1" id="option3" value="option3">
-                    <label class="form-check-label" for="option3">
-                        dir
-                    </label>
-                </div>
-            </div>
-        </div>
+    <h1>Question - Niveau {{ question.level }} - Option {{ question.option }} - Game {{ question.game.value }}</h1>
+    <div id="question-details">
+        {% if question %}
+            <h3>{{ question.question_text }}</h3>
+            {% if question.game.value == 'QCM' %}
+                {% set options = question.correct_answer.split('|') %}
+                <form action="{{ url_for('submit_answer') }}" method="post">
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    {% for option in options %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}">
+                            <label class="form-check-label" for="option{{ loop.index }}">
+                                {{ option }}
+                            </label>
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-3">Soumettre</button>
+                </form>
+            {% elif question.game.value == 'Chiffrement par décalage (César)' %}
+                <p>Indice : Décalage de {{ question.CHIFFREMENT_CESAR_details[0].shift }}</p>
+                <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+                    <button class="btn btn-primary m-3 main_bt" type="submit" style="width: 200px;background-color: green;">Soumettre</button>
+                </form>
+            {% elif question.game.value == 'Pendu' %}
+            <ul>
+                {% for question in questions %}
+                    <li>{{ question.correct_answer }}</li>
+                {% endfor %}
+            </ul>    
+            {% elif question.game.value == 'Motus' %}
+                <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+                    <button class="btn btn-primary m-3 main_bt" type="submit" style="width: 200px;background-color: green;">Soumettre</button>
+                </form>
+            {% elif question.game.value == 'Question simple' %}
+                <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+                    <input type="hidden" name="question_id" value="{{ question.id }}">
+                    <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+                    <button class="btn btn-primary m-3 main_bt" type="submit" style="width: 200px;background-color: green;">Soumettre</button>
+                </form>
+            {% endif %}
+        {% endif %}
     </div>
+</div>
 {% endblock %}

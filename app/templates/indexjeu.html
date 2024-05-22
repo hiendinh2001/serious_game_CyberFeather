@@ -121,36 +121,44 @@
 
 
 </table>
-<div class="container text-center mt-5">
-	<p id="playerPosition">Position du joueur : 0</p>
-	<div class="row">
-		<div class="col-12 col-md-4 p-2">
-			<button onclick="showOptions('Facile')" class="btn btn-custom btn-facile">
-				<i class="fas fa-smile"></i> Facile
-			</button>
-		</div>
-		<div class="col-12 col-md-4 p-2">
-			<button onclick="showOptions('Moyen')" class="btn btn-custom btn-moyen">
-				<i class="fas fa-meh"></i> Moyen
-			</button>
-		</div>
-		<div class="col-12 col-md-4 p-2">
-			<button onclick="showOptions('Difficile')" class="btn btn-custom btn-difficile">
-				<i class="fas fa-frown"></i> Difficile
-			</button>
-		</div>
-	</div>
-	<div id="optionsContainer" class="options row d-none">
-		<div class="col-12">
+<div class="container text-center mt-5 justify-content-center">
+    <p id="playerPosition" class="mb-3">Position du joueur : {{ current_user.score }}</p>
+    <p id="playerScore" class="mb-3">Score actuel : {{ current_user.score }}</p>
+    <div class="row">
+        <div class="col-12 col-md-4 mb-3">
+            <button onclick="showOptions('Facile')" class="btn btn-custom btn-block">
+                <i class="fas fa-smile mr-2"></i> Facile
+            </button>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <button onclick="showOptions('Moyen')" class="btn btn-custom btn-block">
+                <i class="fas fa-meh mr-2"></i> Moyen
+            </button>
+        </div>
+        <div class="col-12 col-md-4 mb-3">
+            <button onclick="showOptions('Difficile')" class="btn btn-custom btn-block">
+                <i class="fas fa-frown mr-2"></i> Difficile
+            </button>
+        </div>
+    </div>
+    <div id="optionsContainer" class="options row d-none text-center">
+		<div class="col-2 col-md-3 mb-2">
 			<div id="option1" class="option-item" onclick="navigateToQuestions('Linux')">Linux</div>
+		</div>
+		<div class="col-2 col-md-3 mb-2">
 			<div id="option2" class="option-item" onclick="navigateToQuestions('Attaque')">Attaque</div>
-			<div id="option3" class="option-item" onclick="navigateToQuestions('Culture_generale')">Culture générale</div>
-			<div id="option4" class="option-item" onclick="navigateToQuestions('Chiffrement')">Chiffrement</div>
-			<div id="option5" class="option-item" onclick="navigateToQuestions('Securite_des_reseaux')">Sécurité des réseaux</div>
+		</div>
+		<div class="col-2 col-md-3 mb-2">
+			<div id="option3" class="option-item" onclick="navigateToQuestions('Chiffrement')">Chiffrement</div>
+		</div>
+		<div class="col-2 col-md-3 mb-2">
+			<div id="option4" class="option-item" onclick="navigateToQuestions('Securite_des_reseaux')">Sécurité des réseaux</div>
 		</div>
 	</div>
+	
 </div>
-<div class="p-3 mb-2 bg-warning text-dark">
+
+<!-- <div class="p-3 mb-2 bg-warning text-dark">
 	<a href="/Facile">Facile</a>
 </div>
 <div class="p-3 mb-2 bg-danger text-dark">
@@ -158,7 +166,7 @@
 </div>
 <div class="p-3 mb-2 bg-success text-dark justify-content-center" >
 	<a href="/Difficile">Difficile</a>
-</div>
+</div> -->
 <script>
 	let playerPosition = 1;
 
@@ -220,18 +228,18 @@
 </script>
 <script>
     let currentLevel = '';
-    let currentOption = '';
 
     function showOptions(level) {
         currentLevel = level;
         const optionsContainer = document.getElementById('optionsContainer');
         optionsContainer.classList.remove('d-none');
-        optionsContainer.classList.add('d-block');
+        optionsContainer.classList.add('d-flex');
     }
 
     function navigateToQuestions(option) {
-        currentOption = option;
-        const url = `/questions/${currentLevel}/${option}`;
+        const games = ['QCM', 'PENDU', 'MOTUS', 'QUESTION_SIMPLE', 'CHIFFREMENT_CESAR'];
+        const randomGame = games[Math.floor(Math.random() * games.length)];
+        const url = `/questions/${currentLevel}/${option}/${randomGame}`;
         window.location.href = url;
     }
 
@@ -245,12 +253,12 @@
         });
     });
 </script>
-<a href="règle du jeu.html" target="_blank">Les règles </a>
-<div id="de1"> </div>
+<!-- <a href="règle du jeu.html" target="_blank">Les règles </a> -->
+<!-- <div id="de1"> </div> -->
 <div id="case"> </div>
 <div id="valeur_question"> </div>
 <div id="question"> </div>
 <div id="reponse"> </div>
-<input name="bouton2" type="button" value="de1" onClick="de1()">
+<!-- <input name="bouton2" type="button" value="de1" onClick="de1()"> -->
 
 {% endblock %}

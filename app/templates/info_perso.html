@@ -28,7 +28,7 @@
     alt="{{ current_user.name }}" />
   {% endif %}
 </div>
-<div class="row justify-content-center mb-4">
+<div class="row justify-content-center mb-4 text-center">
   <div class="col-md-6 col-xs-12 text-center table-responsive">
     <table class="table table-bordered table-hover">
       <tr>
@@ -42,6 +42,10 @@
       <tr>
         <th class="bg-light">Email</th>
         <td class="text-center">{{ current_user.email }}</td>
+      </tr>
+      <tr>
+        <th class="bg-light">Score</th>
+        <td class="text-center">{{ current_user.score }}</td>
       </tr>
     </table>
   </div>

@@ -1,7 +1,7 @@
 import json
 import os
 from app import app, db
-from app.models import User
+from app.models import User, Question,  CHIFFREMENT_CESARQuestion, GameType
 from flask_login import current_user
 from sqlalchemy import func
 from sqlalchemy.sql import extract
@@ -44,3 +44,9 @@ def load_user():
     users = User.query.filter(User.active.__eq__(True))
 
     return users
+
+def get_all_questions():
+    return Question.query.all()
+
+def get_question_by_id(question_id):
+    return Question.query.get(question_id)
