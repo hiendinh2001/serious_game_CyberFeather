@@ -19,7 +19,7 @@ class User(BaseModel, UserMixin):
     email = Column(String(50), nullable=True, unique=True)
     active = Column(Boolean, default=True)
     joined_date = Column(DateTime, default=datetime.now())
-
+    score = Column(Float, default=0.0)
 
 if __name__ == '__main__':
     with app.app_context():

@@ -1,0 +1,37 @@
+{% extends 'layout/base.html' %}
+
+{% block title %} Accueil {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+        <h1>Questions - Niveau {{ level }} - Option {{ option }}</h1>
+        <div id="questions-container">
+            <!-- Les questions seront affichées ici -->
+            <p>Cette section affichera les questions pour le niveau <strong>{{ level }}</strong> et l'option <strong>{{ option }}</strong>.</p>
+            <!-- Exemple de question -->
+            <div class="question">
+                <h3>Question 1</h3>
+                <p>Quelle est la commande pour lister les fichiers dans un répertoire sous Linux ?</p>
+                <!-- Options de réponse -->
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="option1" value="option1">
+                    <label class="form-check-label" for="option1">
+                        ls
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="option2" value="option2">
+                    <label class="form-check-label" for="option2">
+                        list
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="question1" id="option3" value="option3">
+                    <label class="form-check-label" for="option3">
+                        dir
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

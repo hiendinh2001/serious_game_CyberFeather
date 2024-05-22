@@ -95,8 +95,6 @@ def user_signout():
     logout_user()
     return redirect(url_for('user_signin'))
 
-
-
 @login.user_loader
 def user_load(user_id):
     return utils.get_user_by_id(user_id=user_id)
@@ -105,6 +103,10 @@ def user_load(user_id):
 @login_required
 def info_perso():
     return render_template('info_perso.html', users=utils.load_user())
+
+@app.route('/questions/<level>/<option>')
+def questions(level, option):
+    return render_template('questions.html', level=level, option=option)
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

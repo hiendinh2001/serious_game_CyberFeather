@@ -1,76 +1,155 @@
 {% extends 'layout/base.html' %}
 
 {% block title %} Jouer {% endblock %}
-{% block js %} <script src="{{ url_for('static', filename='js/jeu.js') }}"></script> {% endblock %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/jeu.js') }}"></script> {% endblock %}
 
 {% block content %}
 <script src="{{ url_for('static', filename='js/jeu.js') }}"></script>
 
-<TABLE BORDER="1" mt-5>
-  <tr>
-	<div id="case0">
-		<td class= "td2" id="0" >  départ </td>
+<table class="mt-5" border="1">
+	<tr>
+		<div id="case0">
+			<td class="td2" id="0"> départ </td>
+		</div>
+		<div id="case1">
+			<td class="td2" id="1"> 1 </td>
+		</div>
+		<div id="case2">
+			<td class="td2" id="2"> 2 </td>
+		</div>
+		<div id="case3">
+			<td class="td2" id="3">3 </td>
+		</div>
+		<div id="case4">
+			<td class="td2" id="4"> 4 </td>
+		</div>
+		<div id="case5">
+			<td class="td2" id="5"> 5 </td>
+		</div>
+
+	</tr>
+	<tr>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<div id="case00">
+			<td class="td2" id="6"> 6 </td>
+		</div>
+	</tr>
+	<tr>
+		<div id="case20">
+			<td class="td2" id="20"> 20 </td>
+		</div>
+		<div id="case21">
+			<td class="td2" id="21"> 21 </td>
+		</div>
+		<div id="cas22">
+			<td class="td2" id="22"> 22 </td>
+		</div>
+		<div id="case23">
+			<td class="td2" id="23"> 23 </td>
+		</div>
+		<td class="td1"> </td>
+		<div id="case7">
+			<td class="td2" id="7"> 7 </td>
+		</div>
+	</tr>
+	<tr>
+		<div id="case19">
+			<td class="td2" id="19"> 19 </td>
+		</div>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<div id="case24">
+			<td class="td2" id="24"> 24 </td>
+		</div>
+		<td class="td1"> </td>
+		<div id="case8">
+			<td class="td2" id="8"> 8 </td>
+		</div>
+
+	</tr>
+	<tr>
+		<div id="case18">
+			<td class="td2" id="18"> 18 </td>
+		</div>
+		<td class="td1"> </td>
+		<td class="td2" id="26"> Arrivée </td>
+		<div id="case25">
+			<td class="td2" id="25"> 25 </td>
+		</div>
+		<td class="td1"> </td>
+		<div id="case9">
+			<td class="td2" id="9"> 9 </td>
+		</div>
+	</tr>
+	<tr>
+		<div id="case17">
+			<td class="td2" id="17"> 17 </td>
+		</div>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<td class="td1"> </td>
+		<div id="case10">
+			<td class="td2" id="10"> 10 </td>
+		</div>
+
+	</tr>
+	<tr>
+		<div id="case16">
+			<td class="td2" id="16"> 16 </td>
+		</div>
+		<div id="case15">
+			<td class="td2" id="15"> 15 </td>
+		</div>
+		<div id="case14">
+			<td class="td2" id="14"> 14 </td>
+		</div>
+		<div id="case13">
+			<td class="td2" id="13"> 13 </td>
+		</div>
+		<div id="case12">
+			<td class="td2" id="12"> 12 </td>
+		</div>
+		<div id="case11">
+			<td class="td2" id="11"> 11 </td>
+		</div>
+
+
+</table>
+<div class="container text-center mt-5">
+	<p id="playerPosition">Position du joueur : 0</p>
+	<div class="row">
+		<div class="col-12 col-md-4 p-2">
+			<button onclick="showOptions('Facile')" class="btn btn-custom btn-facile">
+				<i class="fas fa-smile"></i> Facile
+			</button>
+		</div>
+		<div class="col-12 col-md-4 p-2">
+			<button onclick="showOptions('Moyen')" class="btn btn-custom btn-moyen">
+				<i class="fas fa-meh"></i> Moyen
+			</button>
+		</div>
+		<div class="col-12 col-md-4 p-2">
+			<button onclick="showOptions('Difficile')" class="btn btn-custom btn-difficile">
+				<i class="fas fa-frown"></i> Difficile
+			</button>
+		</div>
 	</div>
-<div id="case1">  	<td class= "td2"id="1" > 1 </td> </div>
-<div id="case2">  	<td class= "td2"id="2" > 2 </td> </div>
-	<div id="case3"> <td class= "td2"id="3" >3 </td> </div>
-<div id="case4">  	<td class= "td2"id="4" > 4 </td> </div>
-	<div id="case5"> <td class= "td2"id="5" > 5 </td> </div>
-
-  </tr>
-	<tr>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-		<div id="case00"> 	<td class= "td2"id="6" > 6 </td> </div>
- </tr>
-  <tr>
-<div id="case20">  	<td class= "td2"id="20" > 20 </td> </div>
-<div id="case21"> 	<td class= "td2"id="21" > 21 </td> </div>
-<div id="cas22"> 	<td class= "td2"id="22" > 22 </td> </div>
-<div id="case23">  	<td class= "td2"id="23" > 23 </td></div>
-	<td class="td1">   </td>
-<div id="case7">	<td class= "td2"id="7" > 7  </td> </div>
- </tr>
-	<tr>
-<div id="case19">  	<td class= "td2"id="19" > 19 </td> </div>
- 	<td class="td1">   </td>
-	<td class="td1">   </td>
-<div id="case24">  	<td class= "td2"id="24" > 24 </td> </div>
-	<td class="td1">   </td>
-<div id="case8">	<td class= "td2"id="8" >  8  </td> </div>
-
-  </tr>
-  <tr>
-<div id="case18"> 	<td class= "td2"id="18" > 18      </td> </div>
-	<td class="td1">    </td>
-	 <td class= "td2"id="26" > Arrivée </td>
-<div id="case25">  	<td class= "td2"id="25" > 25      </td></div>
-	<td class="td1">   </td>
-<div id="case9">  	<td class= "td2"id="9" > 9       </td></div>
-  </tr>
-  <tr>
-<div id="case17">  	<td class= "td2" id="17" > 17 </td> </div>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-	<td class="td1">   </td>
-<div id="case10">  	<td class= "td2"id="10" > 10 </td> </div>
-
-  </tr>
-   <tr>
-<div id="case16">  	<td class= "td2"id="16" > 16 </td> </div>
-<div id="case15">  	<td class= "td2"id="15" > 15 </td> </div>
-	<div id="case14">  <td class= "td2"id="14" > 14 </td> </div>
-<div id="case13">  	<td class= "td2"id="13" > 13 </td></div>
-<div id="case12">  	<td class= "td2"id="12" > 12 </td></div>
-<div id="case11"> 	<td class= "td2"id="11" > 11  </td> </div>
-
-
-</TABLE>
-<p id="playerPosition">Position du joueur : 0</p>
+	<div id="optionsContainer" class="options row d-none">
+		<div class="col-12">
+			<div id="option1" class="option-item" onclick="navigateToQuestions('Linux')">Linux</div>
+			<div id="option2" class="option-item" onclick="navigateToQuestions('Attaque')">Attaque</div>
+			<div id="option3" class="option-item" onclick="navigateToQuestions('Culture_generale')">Culture générale</div>
+			<div id="option4" class="option-item" onclick="navigateToQuestions('Chiffrement')">Chiffrement</div>
+			<div id="option5" class="option-item" onclick="navigateToQuestions('Securite_des_reseaux')">Sécurité des réseaux</div>
+		</div>
+	</div>
+</div>
 <div class="p-3 mb-2 bg-warning text-dark">
 	<a href="/Facile">Facile</a>
 </div>
@@ -81,61 +160,90 @@
 	<a href="/Difficile">Difficile</a>
 </div>
 <script>
-        let playerPosition = 1;
+	let playerPosition = 1;
 
-        document.getElementById('easy-button').addEventListener('click', function() {
-            openMiniGame('easy');
-        });
+	document.getElementById('easy-button').addEventListener('click', function () {
+		openMiniGame('easy');
+	});
 
-        document.getElementById('medium-button').addEventListener('click', function() {
-            openMiniGame('medium');
-        });
+	document.getElementById('medium-button').addEventListener('click', function () {
+		openMiniGame('medium');
+	});
 
-        document.getElementById('hard-button').addEventListener('click', function() {
-            openMiniGame('hard');
-        });
+	document.getElementById('hard-button').addEventListener('click', function () {
+		openMiniGame('hard');
+	});
 
-        function openMiniGame(difficulty) {
-        	if (difficulty === 'easy'){
+	function openMiniGame(difficulty) {
+		if (difficulty === 'easy') {
 
-				const url = `QCMfacile.html`;
-				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
-				miniGameWindow.onbeforeunload = function() {
-					const result = miniGameWindow.result;
-					if (result === 'win') {
-						updatePlayerPosition();
-					}
+			const url = `QCMfacile.html`;
+			const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
+			miniGameWindow.onbeforeunload = function () {
+				const result = miniGameWindow.result;
+				if (result === 'win') {
+					updatePlayerPosition();
 				}
-			if (difficulty === 'medium'){
+			}
+			if (difficulty === 'medium') {
 
 				const url = `QCMmoyen.html`;
 				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
-				miniGameWindow.onbeforeunload = function() {
+				miniGameWindow.onbeforeunload = function () {
 					const result = miniGameWindow.result;
 					if (result === 'win') {
 						updatePlayerPosition();
 						updatePlayerPosition();
 					}
 				}
-			if (difficulty === 'hard'){
+				if (difficulty === 'hard') {
 
-				const url = `QCMdifficile.html`;
-				const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
-				miniGameWindow.onbeforeunload = function() {
-					const result = miniGameWindow.result;
-					if (result === 'win') {
-						updatePlayerPosition();
-						updatePlayerPosition();
-						updatePlayerPosition();
+					const url = `QCMdifficile.html`;
+					const miniGameWindow = window.open(url, 'miniGame', 'width=600,height=400');
+					miniGameWindow.onbeforeunload = function () {
+						const result = miniGameWindow.result;
+						if (result === 'win') {
+							updatePlayerPosition();
+							updatePlayerPosition();
+							updatePlayerPosition();
+						}
 					}
 				}
-            };
-        }
+			}
+		}
+	}
 
-        function updatePlayerPosition() {
-            playerPosition++;
-            document.getElementById('position').innerText = playerPosition;
-        }
+			function updatePlayerPosition() {
+				playerPosition++;
+				document.getElementById('position').innerText = playerPosition;
+			}
+</script>
+<script>
+    let currentLevel = '';
+    let currentOption = '';
+
+    function showOptions(level) {
+        currentLevel = level;
+        const optionsContainer = document.getElementById('optionsContainer');
+        optionsContainer.classList.remove('d-none');
+        optionsContainer.classList.add('d-block');
+    }
+
+    function navigateToQuestions(option) {
+        currentOption = option;
+        const url = `/questions/${currentLevel}/${option}`;
+        window.location.href = url;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const optionItems = document.querySelectorAll('.option-item');
+        optionItems.forEach(function(item) {
+            item.addEventListener('click', function() {
+                const option = this.textContent.trim();
+                navigateToQuestions(option);
+            });
+        });
+    });
 </script>
 <a href="règle du jeu.html" target="_blank">Les règles </a>
 <div id="de1"> </div>
