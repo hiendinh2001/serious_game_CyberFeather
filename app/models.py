@@ -165,6 +165,105 @@ def add_pendu_questions():
 
     db.session.commit()
 
+def add_chiffrement_question():
+    questions = [
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quel est le principal objectif du chiffrement ?", 
+         "correct_answer": "Confidentialité des données",
+         "options": "Compression des données|Réplication des données|Confidentialité des données|Sauvegarde des données"},
+        
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quel algorithme est utilisé pour le chiffrement symétrique ?", 
+         "correct_answer": "DES",
+         "options": "RSA|DES|DSA|ECC"},
+        
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quelle est la taille de clé la plus courante pour le chiffrement AES ?", 
+         "correct_answer": "128 bits",
+         "options": "64 bits|128 bits|256 bits|512 bits"},
+        
+        {"level": "Moyen", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quel algorithme utilise une clé publique et une clé privée ?", 
+         "correct_answer": "RSA",
+         "options": "AES|RSA|SHA-256|MD5"},
+        
+        {"level": "Moyen", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quelle est la principale caractéristique du chiffrement asymétrique ?", 
+         "correct_answer": "Utilise des clés différentes pour le chiffrement et le déchiffrement",
+         "options": "Utilise la même clé pour le chiffrement et le déchiffrement|Utilise des clés différentes pour le chiffrement et le déchiffrement|Utilise uniquement une clé privée|Utilise uniquement une clé publique"},
+        
+        {"level": "Moyen", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quelle taille de clé est recommandée pour AES ?", 
+         "correct_answer": "128 bits",
+         "options": "56 bits|128 bits|512 bits|1024 bits"},
+        
+        {"level": "Difficile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quelle est la différence principale entre le chiffrement symétrique et asymétrique ?", 
+         "correct_answer": "Le nombre de clés utilisées",
+         "options": "La vitesse de chiffrement|La longueur des clés|Le nombre de clés utilisées|La méthode de déchiffrement"},
+        
+        {"level": "Difficile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quel algorithme de chiffrement est considéré comme inviolable en théorie ?", 
+         "correct_answer": "One-time pad",
+         "options": "Triple DES|One-time pad|Blowfish|Twofish"},
+        
+        {"level": "Difficile", "option": "Chiffrement", "game": GameType.QCM,
+         "question_text": "Quel algorithme est utilisé dans le protocole SSL/TLS pour sécuriser les communications ?", 
+         "correct_answer": "Diffie-Hellman",
+         "options": "RSA|AES|Diffie-Hellman|MD5"}
+    ]
+
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            option=q["option"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+
+        options_list = q["options"].split("|")
+        for option_text in options_list:
+            option = QuestionOption(option_text=option_text)
+            question.options.append(option)
+
+        db.session.add(question)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+
+def add_simple_encryption_questions():
+    questions = [
+        # Niveau Facile
+        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le terme utilisé pour désigner la transformation d'un message en un format illisible afin de le rendre secret ?", "correct_answer": "Cryptage"},
+        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique le plus utilisé ?", "correct_answer": "AES"},
+        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le processus consistant à rendre un message illisible sans avoir besoin d'une clé pour le déchiffrer ?", "correct_answer": "Hachage"},
+        
+        # Niveau Moyen
+        {"level": "Moyen", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement asymétrique largement utilisé pour le chiffrement des e-mails ?", "correct_answer": "RSA"},
+        {"level": "Moyen", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour sécuriser les transactions en ligne ?", "correct_answer": "SSL/TLS"},
+        
+        # Niveau Difficile
+        {"level": "Difficile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique populaire qui utilise des blocs de données de 128 bits ?", "correct_answer": "DES"},
+        {"level": "Difficile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour le chiffrement de bout en bout dans l'application de messagerie WhatsApp ?", "correct_answer": "Signal Protocol"}
+    ]
+
+    # Ajout des questions à la base de données
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+        db.session.add(question)
+
+    # Commit des changements
+    db.session.commit()
+
 
 def add_attack_questions():
     questions = [
@@ -264,6 +363,79 @@ def add_attack_questions():
 
     db.session.commit()
 
+def add_attack_question():
+    questions = [
+        # Niveau Facile
+        {"level": "Facile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque consiste à submerger un système avec une grande quantité de trafic pour le rendre indisponible ?",
+         "correct_answer": "Attaque par déni de service",
+         "options": "Attaque par déni de service|Ransomware|Injection SQL|Phishing"},
+        
+        {"level": "Facile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque consiste à inciter l'utilisateur à cliquer sur un lien malveillant ?",
+         "correct_answer": "Phishing",
+         "options": "Phishing|Injection SQL|Attaque par force brute|Spyware"},
+        
+        {"level": "Facile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque exploite les vulnérabilités d'une application web pour exécuter du code malveillant ?",
+         "correct_answer": "Injection SQL",
+         "options": "Injection SQL|Ransomware|Attaque par déni de service|Spyware"},
+        
+        # Niveau Moyen
+        {"level": "Moyen", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque implique la capture et l'analyse des paquets réseau ?",
+         "correct_answer": "Sniffing",
+         "options": "Sniffing|Phishing|Ransomware|Injection SQL"},
+        
+        {"level": "Moyen", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque utilise un réseau de machines compromises pour lancer une attaque coordonnée ?",
+         "correct_answer": "Botnet",
+         "options": "Botnet|Phishing|Spyware|Sniffing"},
+        
+        {"level": "Moyen", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque cible spécifiquement les utilisateurs pour voler leurs informations personnelles ?",
+         "correct_answer": "Phishing",
+         "options": "Phishing|Injection SQL|Sniffing|Botnet"},
+        
+        # Niveau Difficile
+        {"level": "Difficile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque manipule les requêtes DNS pour rediriger le trafic vers des sites malveillants ?",
+         "correct_answer": "Attaque par empoisonnement DNS",
+         "options": "Attaque par empoisonnement DNS|Injection SQL|Phishing|Ransomware"},
+        
+        {"level": "Difficile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque exploite les faiblesses des protocoles de sécurité Wi-Fi pour intercepter les communications ?",
+         "correct_answer": "Attaque par KRACK",
+         "options": "Attaque par KRACK|Injection SQL|Phishing|Botnet"},
+        
+        {"level": "Difficile", "option": "Attaque", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque consiste à deviner des mots de passe en essayant toutes les combinaisons possibles ?",
+         "correct_answer": "Attaque par force brute",
+         "options": "Attaque par force brute|Phishing|Sniffing|Botnet"}
+    ]
+
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            option=q["option"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+
+        options_list = q["options"].split("|")
+        for option_text in options_list:
+            option = QuestionOption(option_text=option_text)
+            question.options.append(option)
+
+        db.session.add(question)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+
 def add_linux_questions():
     questions = [
         {"level": "Facile", "option": "Linux", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom du super-utilisateur sous Linux ?", "correct_answer": "root"},
@@ -320,37 +492,110 @@ def add_linux_questions():
 
     db.session.commit()
 
+def add_linux_question():
+    questions = [
+        # Niveau Facile
+        {"level": "Facile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de lister les fichiers et répertoires dans un répertoire sous Linux ?",
+         "correct_answer": "ls",
+         "options": "ls|cd|rm|touch"},
+        
+        {"level": "Facile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de changer de répertoire sous Linux ?",
+         "correct_answer": "cd",
+         "options": "cd|ls|rm|touch"},
+        
+        {"level": "Facile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de créer un fichier vide sous Linux ?",
+         "correct_answer": "touch",
+         "options": "touch|rm|ls|cd"},
+        
+        # Niveau Moyen
+        {"level": "Moyen", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de copier des fichiers sous Linux ?",
+         "correct_answer": "cp",
+         "options": "cp|mv|rm|touch"},
+        
+        {"level": "Moyen", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de déplacer ou renommer un fichier sous Linux ?",
+         "correct_answer": "mv",
+         "options": "mv|cp|rm|ls"},
+        
+        {"level": "Moyen", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet d'afficher le contenu d'un fichier sous Linux ?",
+         "correct_answer": "cat",
+         "options": "cat|ls|touch|rm"},
+        
+        # Niveau Difficile
+        {"level": "Difficile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de modifier les permissions d'un fichier sous Linux ?",
+         "correct_answer": "chmod",
+         "options": "chmod|chown|chgrp|ls"},
+        
+        {"level": "Difficile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de modifier le propriétaire d'un fichier sous Linux ?",
+         "correct_answer": "chown",
+         "options": "chown|chmod|chgrp|ls"},
+        
+        {"level": "Difficile", "option": "Linux", "game": GameType.QCM,
+         "question_text": "Quelle commande permet de rechercher des fichiers par nom dans le système de fichiers sous Linux ?",
+         "correct_answer": "find",
+         "options": "find|grep|locate|which"}
+    ]
+
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            option=q["option"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+
+        options_list = q["options"].split("|")
+        for option_text in options_list:
+            option = QuestionOption(option_text=option_text)
+            question.options.append(option)
+
+        db.session.add(question)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+
 def add_network_security_questions():
     questions = [
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "cryptographie"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "pare feu"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "https"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "mot de passe"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Authentification", "options": "Chiffrement|Pare-feu"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "IPsec", "options": "FTP|DHCP"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Hachage", "options": "Chiffrement|Compression"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "botnet"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "smtp"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "sae"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "zero trust"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "spoofing"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "SSH", "options": "OAuth|SNMP"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Sécurité"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Firewall"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Cryptage"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Intrusif"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Vulnérable"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Contournement"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Authentification"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Confidentialité"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Sécurité"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Firewall"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Cryptage"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Intrusif"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Vulnérable"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Contournement"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Authentification"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Confidentialité"}
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "cryptographie"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "pare feu"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "https"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "mot de passe"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Authentification", "options": "Chiffrement|Pare-feu"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "IPsec", "options": "FTP|DHCP"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Hachage", "options": "Chiffrement|Compression"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "botnet"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "smtp"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "sae"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "zero trust"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "spoofing"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "SSH", "options": "OAuth|SNMP"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Sécurité"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Firewall"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Cryptage"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Intrusif"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Vulnérable"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Contournement"},
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Authentification"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Confidentialité"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Sécurité"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Firewall"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Cryptage"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Intrusif"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Vulnérable"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Contournement"},
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Authentification"},
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Confidentialité"}
     ]
 
     for q in questions:
@@ -372,12 +617,175 @@ def add_network_security_questions():
 
     db.session.commit()
 
+def add_network_security_question():
+    questions = [
+        # Niveau Facile
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quelle est la principale fonction d'un pare-feu réseau ?",
+         "correct_answer": "Filtrer le trafic",
+         "options": "Filtrer le trafic|Chiffrer les données|Assurer la connectivité|Fournir du contenu"},
+        
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quel protocole est couramment utilisé pour sécuriser les communications sur Internet ?",
+         "correct_answer": "HTTPS",
+         "options": "HTTPS|FTP|Telnet|HTTP"},
+        
+        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quelle technique consiste à transformer les données en une forme illisible pour protéger leur confidentialité ?",
+         "correct_answer": "Chiffrement",
+         "options": "Chiffrement|Compression|Redondance|Segmentation"},
+        
+        # Niveau Moyen
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quelle est la principale fonction d'un système de détection d'intrusion (IDS) ?",
+         "correct_answer": "Surveiller le réseau pour détecter des activités malveillantes",
+         "options": "Surveiller le réseau pour détecter des activités malveillantes|Bloquer le trafic indésirable|Gérer les connexions réseau|Fournir des adresses IP"},
+        
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quel protocole est utilisé pour sécuriser les communications par courriel ?",
+         "correct_answer": "SSL/TLS",
+         "options": "SSL/TLS|FTP|SMTP|POP3"},
+        
+        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quel type d'attaque consiste à intercepter les communications entre deux parties sans qu'elles le sachent ?",
+         "correct_answer": "Attaque de l'homme du milieu (MITM)",
+         "options": "Attaque de l'homme du milieu (MITM)|Phishing|DDoS|Ransomware"},
+        
+        # Niveau Difficile
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quel est le principal avantage d'utiliser un VPN (réseau privé virtuel) ?",
+         "correct_answer": "Sécuriser la communication sur un réseau public",
+         "options": "Sécuriser la communication sur un réseau public|Augmenter la vitesse de connexion|Réduire les coûts de bande passante|Fournir un accès sans fil"},
+        
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quel protocole de sécurité est souvent utilisé pour créer un tunnel sécurisé entre deux points sur Internet ?",
+         "correct_answer": "IPsec",
+         "options": "IPsec|HTTP|FTP|ICMP"},
+        
+        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+         "question_text": "Quelle méthode de cryptographie utilise deux clés, une publique et une privée ?",
+         "correct_answer": "Cryptographie asymétrique",
+         "options": "Cryptographie asymétrique|Cryptographie symétrique|Hachage|Steganographie"}
+    ]
+
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            option=q["option"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+
+        options_list = q["options"].split("|")
+        for option_text in options_list:
+            option = QuestionOption(option_text=option_text)
+            question.options.append(option)
+
+        db.session.add(question)
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+
+def add_network_questions():
+    questions = [
+        # Questions de niveau Facile
+        {
+            "level": "Facile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel protocole est utilisé pour sécuriser les communications Web ?",
+            "correct_answer": "HTTPS"
+        },
+        {
+            "level": "Facile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel est le nom du protocole utilisé pour sécuriser l'accès à distance aux systèmes informatiques ?",
+            "correct_answer": "SSH"
+        },
+        {
+            "level": "Facile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel type d'attaque cherche à intercepter les communications entre un client et un serveur pour voler des informations ?",
+            "correct_answer": "Man-in-the-middle"
+        },
+        # Questions de niveau Moyen
+        {
+            "level": "Moyen",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel protocole est utilisé pour sécuriser les emails ?",
+            "correct_answer": "SMTPS"
+        },
+        {
+            "level": "Moyen",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel est le terme utilisé pour désigner un logiciel malveillant capable de se propager à travers un réseau sans intervention humaine ?",
+            "correct_answer": "Ver"
+        },
+        {
+            "level": "Moyen",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel protocole est utilisé pour sécuriser les connexions VPN ?",
+            "correct_answer": "IPsec"
+        },
+        # Questions de niveau Difficile
+        {
+            "level": "Difficile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel protocole de routage dynamique est sécurisé par défaut avec l'utilisation d'authentification MD5 ?",
+            "correct_answer": "BGP"
+        },
+        {
+            "level": "Difficile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel est le terme utilisé pour désigner un logiciel malveillant qui se cache à l'intérieur d'un autre programme ?",
+            "correct_answer": "Troyen"
+        },
+        {
+            "level": "Difficile",
+            "option": "Securite_des_reseaux",
+            "game": GameType.QUESTION_SIMPLE,
+            "question_text": "Quel protocole de chiffrement asymétrique est utilisé pour sécuriser les connexions HTTPS ?",
+            "correct_answer": "RSA"
+        }
+    ]
+
+    # Ajouter les questions à la base de données
+    for q in questions:
+        question = Question(
+            level=q["level"],
+            option=q["option"],
+            game=q["game"],
+            question_text=q["question_text"],
+            correct_answer=q["correct_answer"]
+        )
+        db.session.add(question)
+
+    db.session.commit()
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
         add_chiffrement_questions()
         add_motus_questions()
         add_pendu_questions()
+        add_chiffrement_question()
+        add_simple_encryption_questions()
         add_attack_questions()
+        add_attack_question()
         add_linux_questions()
+        add_linux_question()
         add_network_security_questions()
+        add_network_security_question()
+        add_network_questions()
