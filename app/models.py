@@ -568,19 +568,6 @@ def add_linux_question():
 
 def add_network_security_questions():
     questions = [
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "cryptographie"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "pare feu"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "https"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "mot de passe"},
-        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Authentification", "options": "Chiffrement|Pare-feu"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "IPsec", "options": "FTP|DHCP"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Hachage", "options": "Chiffrement|Compression"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "botnet"},
-        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "smtp"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "sae"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "zero trust"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "spoofing"},
-        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "SSH", "options": "OAuth|SNMP"},
         {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Sécurité"},
         {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Firewall"},
         {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Cryptage"},

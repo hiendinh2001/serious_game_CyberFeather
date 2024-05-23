@@ -237,7 +237,7 @@
     }
 
     function navigateToQuestions(option) {
-        const games = ['QCM', 'PENDU', 'MOTUS', 'QUESTION_SIMPLE', 'CHIFFREMENT_CESAR'];
+        const games = ['QCM', 'QUESTION_SIMPLE'];
         const randomGame = games[Math.floor(Math.random() * games.length)];
         const url = `/questions/${currentLevel}/${option}/${randomGame}`;
         window.location.href = url;
