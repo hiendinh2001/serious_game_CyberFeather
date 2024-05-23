@@ -238,23 +238,24 @@ def add_chiffrement_question():
 def add_simple_encryption_questions():
     questions = [
         # Niveau Facile
-        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le terme utilisé pour désigner la transformation d'un message en un format illisible afin de le rendre secret ?", "correct_answer": "Cryptage"},
-        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique le plus utilisé ?", "correct_answer": "AES"},
-        {"level": "Facile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le processus consistant à rendre un message illisible sans avoir besoin d'une clé pour le déchiffrer ?", "correct_answer": "Hachage"},
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le terme utilisé pour désigner la transformation d'un message en un format illisible afin de le rendre secret ?", "correct_answer": "Cryptage"},
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique le plus utilisé ?", "correct_answer": "AES"},
+        {"level": "Facile", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le processus consistant à rendre un message illisible sans avoir besoin d'une clé pour le déchiffrer ?", "correct_answer": "Hachage"},
         
         # Niveau Moyen
-        {"level": "Moyen", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement asymétrique largement utilisé pour le chiffrement des e-mails ?", "correct_answer": "RSA"},
-        {"level": "Moyen", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour sécuriser les transactions en ligne ?", "correct_answer": "SSL/TLS"},
+        {"level": "Moyen", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement asymétrique largement utilisé pour le chiffrement des e-mails ?", "correct_answer": "RSA"},
+        {"level": "Moyen", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour sécuriser les transactions en ligne ?", "correct_answer": "SSL/TLS"},
         
         # Niveau Difficile
-        {"level": "Difficile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique populaire qui utilise des blocs de données de 128 bits ?", "correct_answer": "DES"},
-        {"level": "Difficile", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour le chiffrement de bout en bout dans l'application de messagerie WhatsApp ?", "correct_answer": "Signal Protocol"}
+        {"level": "Difficile", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement symétrique populaire qui utilise des blocs de données de 128 bits ?", "correct_answer": "DES"},
+        {"level": "Difficile", "option": "Chiffrement", "game": GameType.QUESTION_SIMPLE, "question_text": "Quel est le nom de l'algorithme de chiffrement utilisé pour le chiffrement de bout en bout dans l'application de messagerie WhatsApp ?", "correct_answer": "Signal Protocol"}
     ]
 
     # Ajout des questions à la base de données
     for q in questions:
         question = Question(
             level=q["level"],
+            option=q["option"],
             game=q["game"],
             question_text=q["question_text"],
             correct_answer=q["correct_answer"]
