@@ -568,35 +568,35 @@ def add_linux_question():
 
 def add_network_security_questions():
     questions = [
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "cryptographie"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "pare feu"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "https"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "mot de passe"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Authentification", "options": "Chiffrement|Pare-feu"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "IPsec", "options": "FTP|DHCP"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Hachage", "options": "Chiffrement|Compression"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "botnet"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "smtp"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "sae"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "zero trust"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "spoofing"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "SSH", "options": "OAuth|SNMP"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Sécurité"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Firewall"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Cryptage"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Intrusif"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Vulnérable"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Contournement"},
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Authentification"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Confidentialité"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Sécurité"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Firewall"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Cryptage"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Intrusif"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Vulnérable"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Contournement"},
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Authentification"},
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Confidentialité"}
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "cryptographie"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "pare feu"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "https"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "mot de passe"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Authentification", "options": "Chiffrement|Pare-feu"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "IPsec", "options": "FTP|DHCP"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "Hachage", "options": "Chiffrement|Compression"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "botnet"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "smtp"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "sae"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "zero trust"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QUESTION_SIMPLE, "question_text": "La réponse doit être écrite en minuscule, sans accent, sans caractère spécial. Les espaces sont autorisés.", "correct_answer": "spoofing"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM, "question_text": "Sélectionner une des propositions", "correct_answer": "SSH", "options": "OAuth|SNMP"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Sécurité"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Firewall"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Cryptage"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Intrusif"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Vulnérable"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Contournement"},
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Authentification"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.MOTUS, "question_text": "Le but est de trouver le mot sans dépasser 6 tentatives ou la partie est perdue.", "correct_answer": "Confidentialité"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Sécurité"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Firewall"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Cryptage"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Intrusif"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Vulnérable"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Contournement"},
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Authentification"},
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.PENDU, "question_text": "Jeu du pendu, vous avez 10 tentatives.", "correct_answer": "Confidentialité"}
     ]
 
     for q in questions:
@@ -621,49 +621,49 @@ def add_network_security_questions():
 def add_network_security_question():
     questions = [
         # Niveau Facile
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quelle est la principale fonction d'un pare-feu réseau ?",
          "correct_answer": "Filtrer le trafic",
          "options": "Filtrer le trafic|Chiffrer les données|Assurer la connectivité|Fournir du contenu"},
         
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quel protocole est couramment utilisé pour sécuriser les communications sur Internet ?",
          "correct_answer": "HTTPS",
          "options": "HTTPS|FTP|Telnet|HTTP"},
         
-        {"level": "Facile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Facile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quelle technique consiste à transformer les données en une forme illisible pour protéger leur confidentialité ?",
          "correct_answer": "Chiffrement",
          "options": "Chiffrement|Compression|Redondance|Segmentation"},
         
         # Niveau Moyen
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quelle est la principale fonction d'un système de détection d'intrusion (IDS) ?",
          "correct_answer": "Surveiller le réseau pour détecter des activités malveillantes",
          "options": "Surveiller le réseau pour détecter des activités malveillantes|Bloquer le trafic indésirable|Gérer les connexions réseau|Fournir des adresses IP"},
         
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quel protocole est utilisé pour sécuriser les communications par courriel ?",
          "correct_answer": "SSL/TLS",
          "options": "SSL/TLS|FTP|SMTP|POP3"},
         
-        {"level": "Moyen", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Moyen", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quel type d'attaque consiste à intercepter les communications entre deux parties sans qu'elles le sachent ?",
          "correct_answer": "Attaque de l'homme du milieu (MITM)",
          "options": "Attaque de l'homme du milieu (MITM)|Phishing|DDoS|Ransomware"},
         
         # Niveau Difficile
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quel est le principal avantage d'utiliser un VPN (réseau privé virtuel) ?",
          "correct_answer": "Sécuriser la communication sur un réseau public",
          "options": "Sécuriser la communication sur un réseau public|Augmenter la vitesse de connexion|Réduire les coûts de bande passante|Fournir un accès sans fil"},
         
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quel protocole de sécurité est souvent utilisé pour créer un tunnel sécurisé entre deux points sur Internet ?",
          "correct_answer": "IPsec",
          "options": "IPsec|HTTP|FTP|ICMP"},
         
-        {"level": "Difficile", "option": "Securite_des_reseaux", "game": GameType.QCM,
+        {"level": "Difficile", "option": "Sécurité des réseaux", "game": GameType.QCM,
          "question_text": "Quelle méthode de cryptographie utilise deux clés, une publique et une privée ?",
          "correct_answer": "Cryptographie asymétrique",
          "options": "Cryptographie asymétrique|Cryptographie symétrique|Hachage|Steganographie"}
@@ -696,21 +696,21 @@ def add_network_questions():
         # Questions de niveau Facile
         {
             "level": "Facile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel protocole est utilisé pour sécuriser les communications Web ?",
             "correct_answer": "HTTPS"
         },
         {
             "level": "Facile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel est le nom du protocole utilisé pour sécuriser l'accès à distance aux systèmes informatiques ?",
             "correct_answer": "SSH"
         },
         {
             "level": "Facile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel type d'attaque cherche à intercepter les communications entre un client et un serveur pour voler des informations ?",
             "correct_answer": "Man-in-the-middle"
@@ -718,21 +718,21 @@ def add_network_questions():
         # Questions de niveau Moyen
         {
             "level": "Moyen",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel protocole est utilisé pour sécuriser les emails ?",
             "correct_answer": "SMTPS"
         },
         {
             "level": "Moyen",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel est le terme utilisé pour désigner un logiciel malveillant capable de se propager à travers un réseau sans intervention humaine ?",
             "correct_answer": "Ver"
         },
         {
             "level": "Moyen",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel protocole est utilisé pour sécuriser les connexions VPN ?",
             "correct_answer": "IPsec"
@@ -740,21 +740,21 @@ def add_network_questions():
         # Questions de niveau Difficile
         {
             "level": "Difficile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel protocole de routage dynamique est sécurisé par défaut avec l'utilisation d'authentification MD5 ?",
             "correct_answer": "BGP"
         },
         {
             "level": "Difficile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel est le terme utilisé pour désigner un logiciel malveillant qui se cache à l'intérieur d'un autre programme ?",
             "correct_answer": "Troyen"
         },
         {
             "level": "Difficile",
-            "option": "Securite_des_reseaux",
+            "option": "Sécurité des réseaux",
             "game": GameType.QUESTION_SIMPLE,
             "question_text": "Quel protocole de chiffrement asymétrique est utilisé pour sécuriser les connexions HTTPS ?",
             "correct_answer": "RSA"
