@@ -126,17 +126,17 @@
     <p id="playerScore" class="mb-3">Score actuel : {{ current_user.score }}</p>
     <div class="row">
         <div class="col-12 col-md-4 mb-3">
-            <button onclick="showOptions('Facile')" class="btn btn-custom btn-block">
+            <button onclick="showOptions('Facile')" class="btn btn-custom btn-block" style="background-color: mediumseagreen !important; color: white;">
                 <i class="fas fa-smile mr-2"></i> Facile
             </button>
         </div>
         <div class="col-12 col-md-4 mb-3">
-            <button onclick="showOptions('Moyen')" class="btn btn-custom btn-block">
+            <button onclick="showOptions('Moyen')" class="btn btn-custom btn-block" style="background-color: yellowgreen !important; color: white;">
                 <i class="fas fa-meh mr-2"></i> Moyen
             </button>
         </div>
         <div class="col-12 col-md-4 mb-3">
-            <button onclick="showOptions('Difficile')" class="btn btn-custom btn-block">
+            <button onclick="showOptions('Difficile')" class="btn btn-custom btn-block" style="background-color: red !important; color: white;">
                 <i class="fas fa-frown mr-2"></i> Difficile
             </button>
         </div>
@@ -237,7 +237,7 @@
     }
 
     function navigateToQuestions(option) {
-        const games = ['QCM', 'QUESTION_SIMPLE', 'PENDU', 'MOTUS', 'CHIFFREMENT_CESAR'];
+        const games = ['QCM', 'QUESTION_SIMPLE'];
         const randomGame = games[Math.floor(Math.random() * games.length)];
         const url = `/questions/${currentLevel}/${option}/${randomGame}`;
         window.location.href = url;

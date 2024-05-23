@@ -70,9 +70,9 @@ def user_register():
                                avatar=avatar_path)
                 return redirect(url_for('user_signin'))
             else:
-                err_msg = 'The re-entered password is incorrect'
+                err_msg = 'Le mot de passe ré-entré est incorrect'
         except Exception as ex:
-            err_msg = 'Your identifier or email already exists'
+            err_msg = 'Votre identifiant ou email existe déjà'
 
     return render_template('register.html',
                            err_msg=err_msg)
@@ -92,7 +92,7 @@ def user_signin():
 
             return redirect(url_for(request.args.get('next', 'index')))
         else:
-            err_msg = "Your identifier or password incorrect"
+            err_msg = "Votre identifiant ou mot de passe incorrect"
 
     return render_template('login.html',
                            err_msg=err_msg)
@@ -132,16 +132,21 @@ def get_random_question(level, option, game):
         return redirect(url_for('jouer2'))
 
 
-
 @app.route('/submit_answer', methods=['POST'])
 @login_required
 def submit_answer():
     question_id = request.form.get('question_id')
     user_answer = request.form.get('answer')
     question = Question.query.get(question_id)
-    
+
+    correct = None
+    correct_reponse = None
+    explanation = None
+    score_increase = 0
     if question:
         correct = user_answer == question.correct_answer
+        correct_reponse = question.correct_answer
+        explanation = question.explanation
         if correct:
             if question.level == 'Facile':
                 score_increase = 1
@@ -155,7 +160,16 @@ def submit_answer():
         current_user.score += score_increase
         db.session.commit()
 
-    return redirect(url_for('jouer2'))
+    # Après avoir mis à jour le score dans la base de données
+    current_score = current_user.score  # Récupérer le score actuel mis à jour
+    return jsonify({
+        'correct': correct,
+        'correct_reponse': correct_reponse,
+        'explanation': explanation,
+        'current_score': current_score,
+        'score_increase': score_increase
+    })
+
 
 if __name__ == '__main__':
     with app.app_context():

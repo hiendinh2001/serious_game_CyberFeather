@@ -5,16 +5,19 @@
 {% block content %}
 <div class="container mt-5">
     <h1>Question - Niveau {{ question.level }} - Option {{ question.option }} - Game {{ question.game.value }}</h1>
+    <p class="text-center" id="current-score" style="font-size: 1.2rem;">Score actuel : {{ current_user.score }}</p>
+    <div id="countdown" class="text-center mb-3" style="font-size: 1rem; color: red;">Temps restant : <span
+            id="time-left">30</span> secondes</div>
     <div id="question-details">
         {% if question %}
-        <h3>{{ question.question_text }}</h3>
+        <h3 class="question-text m-5">{{ question.question_text }}</h3>
         {% if question.game.value == 'QCM' %}
-        <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+        <form id="answer-form" action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
             <input type="hidden" name="question_id" value="{{ question.id }}">
             {% for option in question.options %}
             <div class="form-check" style="text-align: left;">
                 <input class="form-check-input" type="radio" name="answer" id="option{{ option.id }}"
-                    value="{{ option.option_text }}">
+                    value="{{ option.option_text }}" required>
                 <label class="form-check-label" for="option{{ option.id }}">
                     {{ option.option_text }}
                 </label>
@@ -25,9 +28,9 @@
         </form>
         {% elif question.game.value == 'Chiffrement par décalage (César)' %}
         <p>Indice : Décalage de {{ question.CHIFFREMENT_CESAR_details[0].shift }}</p>
-        <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+        <form id="answer-form" action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
             <input type="hidden" name="question_id" value="{{ question.id }}">
-            <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+            <input type="text" name="answer" class="form-control custom-input" placeholder="Votre réponse" required>
             <button class="btn btn-primary m-3 main_bt" type="submit"
                 style="width: 200px;background-color: green;">Soumettre</button>
         </form>
@@ -38,21 +41,125 @@
             {% endfor %}
         </ul>
         {% elif question.game.value == 'Motus' %}
-        <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+        <form id="answer-form" action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
             <input type="hidden" name="question_id" value="{{ question.id }}">
-            <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+            <input type="text" name="answer" class="form-control custom-input" placeholder="Votre réponse" required>
             <button class="btn btn-primary m-3 main_bt" type="submit"
                 style="width: 200px;background-color: green;">Soumettre</button>
         </form>
         {% elif question.game.value == 'Question simple' %}
-        <form action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
+        <form id="answer-form" action="{{ url_for('submit_answer') }}" method="post" style="text-align: center;">
             <input type="hidden" name="question_id" value="{{ question.id }}">
-            <input type="text" name="answer" class="form-control" placeholder="Votre réponse">
+            <input type="text" name="answer" class="form-control custom-input" placeholder="Votre réponse" required>
             <button class="btn btn-primary m-3 main_bt" type="submit"
                 style="width: 200px;background-color: green;">Soumettre</button>
         </form>
         {% endif %}
+        <div id="result" style="display: none;" class="justify-content-center">
+            <div id="answer-feedback" class="alert p-3 mb-3" role="alert" style="font-size: 1.2rem;"></div>
+            <div id="score-increase" class="alert p-3 mb-3" role="alert" style="font-size: 1.2rem;"></div>
+            <div id="answer-feedback-correct" class="alert p-3 mb-3" role="alert" style="font-size: 1.2rem;"></div>
+            <div id="explanation" class="alert alert-info p-3" role="alert" style="font-size: 1.1rem;"></div>
+            <div style="text-align: center;" class="m-5"><a href="{{ url_for('jouer2') }}" class="btn m-3 main_bt"
+                    style="width: 200px; background-color: green;">Voir le plateau</a></div>
+        </div>
         {% endif %}
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var timeLeft = 30; // Change this value to set the time limit
+        var countdownElement = document.getElementById('time-left');
+        var timer = setInterval(function () {
+            timeLeft--;
+            countdownElement.innerText = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                handleTimeOut();
+            }
+        }, 1000);
+
+        function handleTimeOut() {
+            var form = document.getElementById('answer-form');
+            var formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    displayResult(data);
+                })
+                .catch(error => console.error('Error submitting answer:', error));
+        }
+
+        function displayResult(data) {
+            var resultDiv = document.getElementById('result');
+            var feedbackDiv = document.getElementById('answer-feedback');
+            var feedbackReponseDiv = document.getElementById('answer-feedback-correct');
+            var explanationDiv = document.getElementById('explanation');
+            var scoreIncreaseDiv = document.getElementById('score-increase');
+
+            if (data.correct) {
+                feedbackDiv.innerText = 'Correct!';
+                feedbackDiv.classList.add('alert-success');
+            } else {
+                feedbackDiv.innerText = 'Incorrect!';
+                feedbackDiv.classList.add('alert-danger');
+            }
+
+            if (data.score_increase !== undefined) {
+                if (data.score_increase == 0) {
+                    scoreIncreaseDiv.innerText = 'Score : +' + data.score_increase;
+                    scoreIncreaseDiv.classList.add('alert-danger');
+                }
+                else {
+                    scoreIncreaseDiv.innerText = 'Score : +' + data.score_increase;
+                    scoreIncreaseDiv.classList.add('alert-success');
+                }
+            }
+
+            if (data.correct_reponse) {
+                feedbackReponseDiv.innerText = 'La bonne réponse : ' + data.correct_reponse;
+                if (data.correct) {
+                    feedbackReponseDiv.classList.add('alert-success');
+                } else {
+                    feedbackReponseDiv.classList.add('alert-danger');
+                }
+            }
+
+            if (data.explanation) {
+                explanationDiv.innerText = 'Explication : ' + data.explanation;
+                explanationDiv.classList.add('alert-info');
+            }
+
+            // Mettre à jour le score actuel affiché sur la page
+            var currentScoreElement = document.getElementById('current-score');
+            if (currentScoreElement) {
+                currentScoreElement.innerText = 'Score actuel : ' + data.current_score;
+            }
+
+            resultDiv.style.display = 'block';
+            document.getElementById('answer-form').style.display = 'none';
+        }
+
+        document.getElementById('answer-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            clearInterval(timer); // Arrête la minuterie
+            var form = event.target;
+            var formData = new FormData(form);
+            fetch(form.action, {
+                method: form.method,
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    displayResult(data);
+                })
+                .catch(error => console.error('Error submitting answer:', error));
+        });
+    });
+
+</script>
 {% endblock %}
