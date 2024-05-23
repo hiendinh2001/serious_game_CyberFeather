@@ -122,8 +122,8 @@
 
 </table>
 <div class="container text-center mt-5 justify-content-center">
-    <p id="playerPosition" class="mb-3">Position du joueur : {{ current_user.score }}</p>
-    <p id="playerScore" class="mb-3">Score actuel : {{ current_user.score }}</p>
+    <p id="playerPosition" class="mb-3" style="font-size: 1.2rem;">Position du joueur : {{ current_user.score }}</p>
+    <p id="playerScore" class="mb-3" style="font-size: 1.2rem;">Score actuel : {{ current_user.score }}</p>
     <div class="row">
         <div class="col-12 col-md-4 mb-3">
             <button onclick="showOptions('Facile')" class="btn btn-custom btn-block" style="background-color: mediumseagreen !important; color: white;">
@@ -143,16 +143,16 @@
     </div>
     <div id="optionsContainer" class="options row d-none text-center">
 		<div class="col-2 col-md-3 mb-2">
-			<div id="option1" class="option-item" onclick="navigateToQuestions('Linux')">Linux</div>
+			<div id="option1" class="option-item" onclick="navigateToQuestions('Linux')" style="background-color: #3498db; color: white; cursor: pointer;">Linux</div>
 		</div>
 		<div class="col-2 col-md-3 mb-2">
-			<div id="option2" class="option-item" onclick="navigateToQuestions('Attaque')">Attaque</div>
+			<div id="option2" class="option-item" onclick="navigateToQuestions('Attaque')" style="background-color: #ff6b81; color: white; cursor: pointer;">Attaque</div>
 		</div>
 		<div class="col-2 col-md-3 mb-2">
-			<div id="option3" class="option-item" onclick="navigateToQuestions('Chiffrement')">Chiffrement</div>
+			<div id="option3" class="option-item" onclick="navigateToQuestions('Chiffrement')" style="background-color: #f39c12; color: white; cursor: pointer;">Chiffrement</div>
 		</div>
 		<div class="col-2 col-md-3 mb-2">
-			<div id="option4" class="option-item" onclick="navigateToQuestions('Securite_des_reseaux')">Sécurité des réseaux</div>
+			<div id="option4" class="option-item" onclick="navigateToQuestions('Securite_des_reseaux')" style="background-color: #9b59b6; color: white; cursor: pointer;">Sécurité des réseaux</div>
 		</div>
 	</div>
 	
