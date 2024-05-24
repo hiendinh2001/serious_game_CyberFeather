@@ -31,6 +31,8 @@ class User(BaseModel, UserMixin):
     active = Column(Boolean, default=True)
     joined_date = Column(DateTime, default=datetime.now())
     score = Column(Float, default=0.0)
+    topscore = Column(Float, default=-100.0)
+    position = Column(Float, default=0.0)
 
 class QuestionOption(db.Model):
     __tablename__ = 'question_options'

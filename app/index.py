@@ -19,7 +19,10 @@ from sqlalchemy import desc
 
 @app.route("/")
 def index():
-    top_scores = User.query.order_by(desc(User.score)).limit(10).all()
+    current_user.score = 0.0
+    current_user.position = 0.0
+    db.session.commit()
+    top_scores = User.query.order_by(desc(User.topscore)).limit(10).all()
     return render_template('index.html', top_scores=top_scores)
 
 @app.route("/jouer")
@@ -30,6 +33,15 @@ def jouer():
 def jouer2():
     return render_template('indexjeu.html')
 
+@app.route("/endgame")
+def endgame():
+    if current_user.score > current_user.topscore:
+        current_user.topscore = current_user.score
+    current_user.score = 0.0
+    current_user.position = 0.0
+    db.session.commit()
+    top_scores = User.query.order_by(desc(User.topscore)).limit(10).all()
+    return render_template('index.html', top_scores=top_scores)
 @app.route("/Facile")
 def Facile():
     return render_template('QCMfacile.html')
@@ -155,13 +167,21 @@ def submit_answer():
             elif question.level == 'Difficile':
                 score_increase = 3
         else:
-            score_increase = 0
+            if question.level == 'Facile':
+                score_increase = -1
+            elif question.level == 'Moyen':
+                score_increase = -2
+            elif question.level == 'Difficile':
+                score_increase = -3
 
         current_user.score += score_increase
+        if score_increase > 0:
+            current_user.position += score_increase
         db.session.commit()
 
     # Après avoir mis à jour le score dans la base de données
     current_score = current_user.score  # Récupérer le score actuel mis à jour
+
     return jsonify({
         'correct': correct,
         'correct_reponse': correct_reponse,
