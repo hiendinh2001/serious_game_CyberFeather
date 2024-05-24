@@ -110,12 +110,12 @@
             }
 
             if (data.score_increase !== undefined) {
-                if (data.score_increase == 0) {
+                if (data.score_increase > 0) {
                     scoreIncreaseDiv.innerText = 'Score : +' + data.score_increase;
                     scoreIncreaseDiv.classList.add('alert-danger');
                 }
                 else {
-                    scoreIncreaseDiv.innerText = 'Score : +' + data.score_increase;
+                    scoreIncreaseDiv.innerText = 'Score : ' + data.score_increase;
                     scoreIncreaseDiv.classList.add('alert-success');
                 }
             }
